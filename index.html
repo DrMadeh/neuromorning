@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>د. مادح محمد جادو - استشاري طب المخ والأعصاب</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --deep-blue: #0d2147;
+    --mid-blue: #1a3a7c;
+    --accent-gold: #d4a843;
+    --accent-teal: #00c9b1;
+    --light-teal: #e0faf7;
+    --white: #ffffff;
+    --off-white: #f7f9fc;
+    --text-dark: #1a1a2e;
+    --text-gray: #6b7a99;
+    --card-bg: #ffffff;
+    --shadow: 0 8px 32px rgba(10,22,40,0.12);
+    --shadow-hover: 0 16px 48px rgba(10,22,40,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--deep-blue) 50%, var(--mid-blue) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px 80px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,201,177,0.12) 0%, transparent 70%);
+    top: -100px; left: -100px;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(212,168,67,0.1) 0%, transparent 70%);
+    bottom: -50px; right: -50px;
+    animation: pulse 8s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+  }
+
+  /* floating circles */
+  .hero-circles span {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(0,201,177,0.15);
+    animation: rotate 20s linear infinite;
+  }
+  .hero-circles span:nth-child(1) { width: 300px; height: 300px; top: 10%; right: 5%; }
+  .hero-circles span:nth-child(2) { width: 200px; height: 200px; bottom: 20%; left: 8%; animation-duration: 15s; animation-direction: reverse; }
+  .hero-circles span:nth-child(3) { width: 150px; height: 150px; top: 60%; right: 15%; animation-duration: 25s; }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .badge {
+    background: rgba(0,201,177,0.15);
+    border: 1px solid rgba(0,201,177,0.4);
+    color: var(--accent-teal);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+    animation: fadeDown 0.8s ease forwards;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .avatar-wrap {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .avatar-ring {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-teal));
+    padding: 4px;
+    box-shadow: 0 0 40px rgba(0,201,177,0.3);
+  }
+
+  .avatar-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: var(--deep-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    overflow: hidden;
+  }
+
+  .avatar-inner img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  #photo-upload { display: none; }
+  .avatar-ring { cursor: pointer; position: relative; }
+  .avatar-ring:hover::after {
+    content: '📷 تغيير الصورة';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .hero-name {
+    font-family: 'Scheherazade New', serif;
+    font-size: clamp(38px, 7vw, 62px);
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .hero-title {
+    color: var(--accent-teal);
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 400;
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+
+  .hero-creds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+
+  .cred-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cred-pill span { color: var(--accent-gold); font-size: 16px; }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.8s ease 0.6s both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent-teal), #00a896);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0,201,177,0.35);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,201,177,0.5); }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    animation: bounce 2s ease infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .scroll-hint::after {
+    content: '↓';
+    font-size: 18px;
+    color: var(--accent-teal);
+  }
+
+  /* ===== STATS ===== */
+  .stats-bar {
+    background: white;
+    padding: 32px 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .stats-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 16px;
+    border-left: 1px solid #eee;
+  }
+
+  .stat-item:last-child { border-left: none; }
+
+  .stat-num {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--mid-blue);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-gray);
+    margin-top: 6px;
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 70px 20px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: var(--light-teal);
+    color: var(--accent-teal);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .section-subtitle {
+    color: var(--text-gray);
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  .divider {
+    width: 60px; height: 4px;
+    background: linear-gradient(to right, var(--accent-teal), var(--accent-gold));
+    border-radius: 2px;
+    margin: 14px auto 0;
+  }
+
+  /* ===== SYMPTOMS ===== */
+  .symptoms-section { background: var(--off-white); }
+
+  .symptoms-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .symptom-card {
+    background: white;
+    border: 1.5px solid #e0e7f0;
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .symptom-card:hover {
+    border-color: var(--accent-teal);
+    background: var(--light-teal);
+    transform: translateY(-2px);
+  }
+
+  .symptom-icon { font-size: 18px; }
+
+  .symptom-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  /* ===== CLINICS ===== */
+  .clinics-section { background: white; }
+
+  .clinics-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 24px;
+  }
+
+  .clinic-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+  }
+
+  .clinic-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+
+  .clinic-header {
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .clinic-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .clinic-city { font-size: 20px; font-weight: 800; color: white; }
+  .clinic-center { font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 2px; }
+
+  .clinic-body { padding: 20px 24px; background: white; }
+
+  .clinic-info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .info-icon {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    background: var(--off-white);
+  }
+
+  .info-text { font-size: 14px; color: var(--text-dark); line-height: 1.5; }
+  .info-label { font-size: 11px; color: var(--text-gray); margin-bottom: 2px; }
+
+  .clinic-call-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    border: none;
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 8px;
+    transition: all 0.3s;
+    color: white;
+  }
+
+  .clinic-map-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1.5px solid #e0e7f0;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 8px;
+    color: var(--text-dark);
+    background: var(--off-white);
+    transition: all 0.3s;
+  }
+
+  .clinic-card-1 .clinic-header { background: linear-gradient(135deg, #1a3a7c, #2d5db8); }
+  .clinic-card-1 .clinic-call-btn { background: linear-gradient(135deg, #1a3a7c, #2d5db8); }
+  .clinic-card-1 .clinic-call-btn:hover { box-shadow: 0 8px 20px rgba(26,58,124,0.4); transform: translateY(-2px); }
+
+  .clinic-card-2 .clinic-header { background: linear-gradient(135deg, #00a896, #00c9b1); }
+  .clinic-card-2 .clinic-call-btn { background: linear-gradient(135deg, #00a896, #00c9b1); }
+  .clinic-card-2 .clinic-call-btn:hover { box-shadow: 0 8px 20px rgba(0,168,150,0.4); transform: translateY(-2px); }
+
+  .clinic-card-3 .clinic-header { background: linear-gradient(135deg, #7c3a9e, #b06de0); }
+  .clinic-card-3 .clinic-call-btn { background: linear-gradient(135deg, #7c3a9e, #b06de0); }
+  .clinic-card-3 .clinic-call-btn:hover { box-shadow: 0 8px 20px rgba(124,58,158,0.4); transform: translateY(-2px); }
+
+  /* ===== CONTACT ===== */
+  .contact-section {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--deep-blue) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300c9b1' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .contact-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .contact-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .contact-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  .contact-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    border-radius: 16px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 220px;
+    justify-content: center;
+  }
+
+  .whatsapp-btn {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+  }
+
+  .whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(37,211,102,0.45); }
+
+  .call-btn {
+    background: linear-gradient(135deg, var(--accent-teal), #00a896);
+    color: white;
+    box-shadow: 0 8px 24px rgba(0,201,177,0.3);
+  }
+
+  .call-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,201,177,0.45); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy);
+    padding: 24px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  footer p {
+    color: rgba(255,255,255,0.35);
+    font-size: 13px;
+  }
+
+  footer span { color: var(--accent-teal); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .stat-num { font-size: 24px; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .contact-btns { flex-direction: column; align-items: center; }
+    .contact-btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-circles">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="badge">🧠 عيادة المخ والأعصاب</div>
+
+  <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)">
+  <div class="avatar-wrap" onclick="document.getElementById('photo-upload').click()">
+    <div class="avatar-ring">
+      <div class="avatar-inner" id="avatar-inner">
+        <img id="doctor-photo" src="" alt="د. مادح" style="display:none">
+        <span id="avatar-placeholder" style="font-size:56px">👨‍⚕️</span>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="hero-name">د. مادح محمد جادو</h1>
+  <p class="hero-title">استشاري طب المخ والأعصاب</p>
+
+  <div class="hero-creds">
+    <div class="cred-pill"><span>🎓</span> الزمالة المصرية للأمراض العصبية</div>
+    <div class="cred-pill"><span>🏥</span> رئيس قسم الأعصاب — مستشفى بلقاس</div>
+  </div>
+
+  <div class="hero-btns">
+    <a href="https://wa.me/201096907444" class="btn-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.122 1.525 5.857L0 24l6.338-1.505A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.015-1.374l-.36-.214-3.732.886.936-3.622-.236-.373A9.773 9.773 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+      احجز عبر واتساب
+    </a>
+    <a href="tel:01066564564" class="btn-secondary">
+      📞 اتصل بنا
+    </a>
+  </div>
+
+  <div class="scroll-hint">تصفح للأسفل</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">فروع العيادة</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">+10</div>
+      <div class="stat-label">سنوات خبرة</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">8</div>
+      <div class="stat-label">تخصصات علاجية</div>
+    </div>
+  </div>
+</div>
+
+<!-- SYMPTOMS -->
+<section class="symptoms-section">
+  <div class="section-header">
+    <div class="section-tag">الأعراض التي نعالجها</div>
+    <h2 class="section-title">لو بتعاني من أي من هذه الأعراض</h2>
+    <p class="section-subtitle">احجز استشارتك دلوقتي</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="symptoms-grid">
+    <div class="symptom-card">
+      <span class="symptom-icon">⚡</span>
+      <div class="symptom-name">تشنجات وصرع</div>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">🧠</span>
+      <div class="symptom-name">جلطات المخ</div>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">🤕</span>
+      <div class="symptom-name">صداع مزمن</div>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">🫀</span>
+      <div class="symptom-name">شلل نصفي</div>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">🦴</span>
+      <div class="symptom-name">آلام الرقبة</div>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">🔩</span>
+      <div class="symptom-name">آلام الظهر</div>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">🔄</span>
+      <div class="symptom-name">تصلب متعدد</div>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">🤲</span>
+      <div class="symptom-name">حركات لا إرادية</div>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">🖐️</span>
+      <div class="symptom-name">تنميل وضعف أعصاب</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLINICS -->
+<section class="clinics-section">
+  <div class="section-header">
+    <div class="section-tag">فروع العيادة</div>
+    <h2 class="section-title">اختر الفرع الأقرب إليك</h2>
+    <p class="section-subtitle">مواعيد شهر رمضان 🌙</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="clinics-grid">
+
+    <!-- المنصورة -->
+    <div class="clinic-card clinic-card-1">
+      <div class="clinic-header">
+        <div class="clinic-icon">📍</div>
+        <div>
+          <div class="clinic-city">المنصورة</div>
+          <div class="clinic-center">مشعل — الدور الخامس</div>
+        </div>
+      </div>
+      <div class="clinic-body">
+        <div class="clinic-info-row">
+          <div class="info-icon">📅</div>
+          <div>
+            <div class="info-label">أيام العمل</div>
+            <div class="info-text">الإثنين — الخميس</div>
+          </div>
+        </div>
+        <div class="clinic-info-row">
+          <div class="info-icon">🌙</div>
+          <div>
+            <div class="info-label">مواعيد رمضان</div>
+            <div class="info-text">من 1 إلى 4 عصراً</div>
+          </div>
+        </div>
+        <div class="clinic-info-row">
+          <div class="info-icon">📌</div>
+          <div>
+            <div class="info-label">العنوان</div>
+            <div class="info-text">أمام مطعم العناني — فوق مركز الجراحة</div>
+          </div>
+        </div>
+        <a href="tel:01096907111" class="clinic-call-btn">📞 01096907111</a>
+        <a href="https://maps.app.goo.gl/1Rm1XGmycrWPRg99A" target="_blank" class="clinic-map-btn">🗺️ الموقع على الخريطة</a>
+      </div>
+    </div>
+
+    <!-- بلقاس -->
+    <div class="clinic-card clinic-card-2">
+      <div class="clinic-header">
+        <div class="clinic-icon">📍</div>
+        <div>
+          <div class="clinic-city">بلقاس</div>
+          <div class="clinic-center">المزلقان — الدور الثاني</div>
+        </div>
+      </div>
+      <div class="clinic-body">
+        <div class="clinic-info-row">
+          <div class="info-icon">📅</div>
+          <div>
+            <div class="info-label">أيام العمل</div>
+            <div class="info-text">السبت — الثلاثاء</div>
+          </div>
+        </div>
+        <div class="clinic-info-row">
+          <div class="info-icon">🌙</div>
+          <div>
+            <div class="info-label">مواعيد رمضان</div>
+            <div class="info-text">من 10 صباحاً إلى 3 عصراً</div>
+          </div>
+        </div>
+        <div class="clinic-info-row">
+          <div class="info-icon">📌</div>
+          <div>
+            <div class="info-label">العنوان</div>
+            <div class="info-text">طلعت مطاوع</div>
+          </div>
+        </div>
+        <a href="tel:01096907444" class="clinic-call-btn">📞 01096907444</a>
+        <a href="https://maps.app.goo.gl/wUY8tpKUfh4aErbr5" target="_blank" class="clinic-map-btn">🗺️ الموقع على الخريطة</a>
+      </div>
+    </div>
+
+    <!-- ديسط -->
+    <div class="clinic-card clinic-card-3">
+      <div class="clinic-header">
+        <div class="clinic-icon">📍</div>
+        <div>
+          <div class="clinic-city">ديسط</div>
+          <div class="clinic-center">مركز طلخا</div>
+        </div>
+      </div>
+      <div class="clinic-body">
+        <div class="clinic-info-row">
+          <div class="info-icon">📅</div>
+          <div>
+            <div class="info-label">أيام العمل</div>
+            <div class="info-text">الأحد — الأربعاء</div>
+          </div>
+        </div>
+        <div class="clinic-info-row">
+          <div class="info-icon">🌙</div>
+          <div>
+            <div class="info-label">مواعيد رمضان</div>
+            <div class="info-text">من 1 إلى 4 عصراً</div>
+          </div>
+        </div>
+        <div class="clinic-info-row">
+          <div class="info-icon">📌</div>
+          <div>
+            <div class="info-label">العنوان</div>
+            <div class="info-text">أول البلد — أمام الكوبري الصغير</div>
+          </div>
+        </div>
+        <a href="tel:01006761235" class="clinic-call-btn">📞 01006761235</a>
+        <a href="https://maps.app.goo.gl/DoVZCUkRKKgv9xiY8" target="_blank" class="clinic-map-btn">🗺️ الموقع على الخريطة</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-inner">
+    <h2 class="contact-title">احجز استشارتك الآن</h2>
+    <p class="contact-sub">تواصل معنا عبر الطريقة المناسبة لك</p>
+    <div class="contact-btns">
+      <a href="https://wa.me/201096907444" class="contact-btn whatsapp-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.122 1.525 5.857L0 24l6.338-1.505A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.015-1.374l-.36-.214-3.732.886.936-3.622-.236-.373A9.773 9.773 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+        واتساب: 01096907444
+      </a>
+      <a href="tel:01066564564" class="contact-btn call-btn">
+        📞 اتصال: 01066564564
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>جميع الحقوق محفوظة &copy; 2025 — <span>د. مادح محمد جادو</span></p>
+</footer>
+
+<script>
+  // Photo upload
+  function loadPhoto(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = document.getElementById('doctor-photo');
+      const placeholder = document.getElementById('avatar-placeholder');
+      img.src = e.target.result;
+      img.style.display = 'block';
+      placeholder.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Animate elements on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.symptom-card, .clinic-card, .stat-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

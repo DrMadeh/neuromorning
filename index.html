@@ -8,14 +8,16 @@
     <style>
         :root {
             --navy: #0a1628;
+            --deep-blue: #0d2147;
             --accent-teal: #00c9b1;
+            --accent-gold: #d4a843;
             --white: #ffffff;
         }
 
         body {
             margin: 0;
             font-family: 'Cairo', sans-serif;
-            background-color: var(--navy);
+            background: linear-gradient(135deg, var(--navy) 0%, var(--deep-blue) 100%);
             color: var(--white);
             display: flex;
             justify-content: center;
@@ -25,83 +27,9 @@
         }
 
         .container {
-            padding: 20px;
-            max-width: 400px;
+            padding: 30px 20px;
+            max-width: 420px;
             width: 100%;
         }
 
         .avatar-ring {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 25px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-teal), #d4a843);
-            padding: 5px;
-            box-shadow: 0 0 30px rgba(0, 201, 177, 0.3);
-        }
-
-        .avatar-inner {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #0d2147;
-        }
-
-        .avatar-inner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            font-weight: 900;
-        }
-
-        .title {
-            color: var(--accent-teal);
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .info-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
-            font-size: 15px;
-        }
-
-        .btn-whatsapp {
-            display: block;
-            background: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="avatar-ring">
-            <div class="avatar-inner">
-                <img src="https://raw.githubusercontent.com/DrMadeh/neuromorning/main/1767173976637.jpg" alt="د. مادح محمد جادو">
-            </div>
-        </div>
-
-        <h1>د. مادح محمد جادو</h1>
-        <div class="title">استشاري طب المخ والأعصاب</div>
-
-        <div class="info-card">🎓 الزمالة المصرية للأمراض العصبية</div>
-        <div class="info-card">🏥 رئيس قسم الأعصاب — مستشفى بلقاس</div>
-
-        <a href="https://wa.me/201006761235" class="btn-whatsapp">تواصل عبر واتساب</a>
-    </div>
-</body>
-</html>
